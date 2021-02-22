@@ -1,0 +1,14 @@
+{
+  "internal": {
+    "watchPath": "/data/cache"
+  },
+  "endpoint": {
+    "port": 3002,
+    "host": "cache-monitor",
+    "protocol": "http",
+    "path": {
+      "available": "/monitor/available",
+      "missing": "/monitor/missing"
+    }
+  }
+}
