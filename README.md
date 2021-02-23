@@ -4,15 +4,15 @@
 
 # Cache Monitor
 
-Monitors availability of media items in [Cache](https://gitlab.irt.de/5g-victori/cache)
+Monitors availability of media items in [Cache](../../../5gv-cache)
 
 ## What is this?
 
-The Cache Monitor service is part of the [platform](https://gitlab.irt.de/5g-victori/platform) for media caching on trains. It is responsible for observing the cache directory of the [Cache](https://gitlab.irt.de/5g-victori/cache) to determine availability of content. Changes in the availability of content items are reported to the [State API](https://gitlab.irt.de/5g-victori/state-api) which adapts the cache state in the State DB accordingly. The cache state is queried by the [Prefetcher](https://gitlab.irt.de/5g-victori/prefetcher) which will request missing content items from the cache in order for it to load the content from the upstream location.
+The Cache Monitor service is part of the [platform](../../../5gv-platform) for media caching on trains. It is responsible for observing the cache directory of the [Cache](../../../5gv-cache) to determine availability of content. Changes in the availability of content items are reported to the [State API](../../../5gv-state-api) which adapts the cache state in the State DB accordingly. The cache state is queried by the [Prefetcher](../../../5gv-prefetcher) which will request missing content items from the cache in order for it to load the content from the upstream location.
 
 ## How does it work?
 
-Below architecture diagram shows the software modules that implement the essential functionalities of the Cache Monitor. These include clients for HTTP communication with the [State API](https://gitlab.irt.de/5g-victori/state-api) and communication with the [Message Streamer](https://gitlab.irt.de/5g-victori/messenger). A core logic module manages the file system observer and coordinates reporting of content item availability. The file system oberver notifies the whenever a file is added to or removed from the observed cache directory. The NGINX based cache uses the md5 hash of hostname and path of the upstream location of a given resource as a filename. We use thsi knowledge on NGINX' naming convention to detect whether a content item is available in the cache or not.
+Below architecture diagram shows the software modules that implement the essential functionalities of the Cache Monitor. These include clients for HTTP communication with the [State API](../../../5gv-state-api) and communication with the [Message Streamer](../../../5gv-messenger). A core logic module manages the file system observer and coordinates reporting of content item availability. The file system oberver notifies the whenever a file is added to or removed from the observed cache directory. The NGINX based cache uses the md5 hash of hostname and path of the upstream location of a given resource as a filename. We use thsi knowledge on NGINX' naming convention to detect whether a content item is available in the cache or not.
 
 ![Architecture of the Cache Monitor](https://docs.google.com/drawings/d/1UGBatWVdzifi891A5NqvvgDojLQN5_uMloInKmnbO4Y/export/svg)
 
@@ -33,7 +33,7 @@ The basic program flow of the core logic in [monitor.service.ts](src/monitor/mon
 
 ## Install, build, run
 
-**Note:** _Typically you would use the `up.sh` script from the [Platform](https://gitlab.irt.de/5g-victori/platform) project to install, build and run this service as part of a composite of docker services. Read on if you intend to run the service directly on your host system._
+**Note:** _Typically you would use the `up.sh` script from the [Platform](../../../5gv-platform) project to install, build and run this service as part of a composite of docker services. Read on if you intend to run the service directly on your host system._
 
 **Prerequestits**: Following software needs to be installed on your host machine in order to execute the subsequent steps.
 
@@ -59,7 +59,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-With following command you can build a [docker image](https://www.docker.com) for this service. But again, typically you use the startup script `up.sh` of the [Platform](https://gitlab.irt.de/5g-victori/platform) project to do the job.
+With following command you can build a [docker image](https://www.docker.com) for this service. But again, typically you use the startup script `up.sh` of the [Platform](../../../5gv-platform) project to do the job.
 
 ```bash
 $ DOCKER_BUILDKIT=1 docker build --ssh gitlab="$HOME/.ssh/<<your_private_key_name>>" -t cache-monitor .
