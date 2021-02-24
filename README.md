@@ -62,7 +62,5 @@ $ npm run start:prod
 With following command you can build a [docker image](https://www.docker.com) for this service. But again, typically you use the startup script `up.sh` of the [Platform](../../../5gv-platform) project to do the job.
 
 ```bash
-$ DOCKER_BUILDKIT=1 docker build --ssh gitlab="$HOME/.ssh/<<your_private_key_name>>" -t cache-monitor .
+$ docker build -t cache-monitor .
 ```
-
-Replace `<<your_private_key_name>>` by the name of the private key used to authenticate at the repository.
