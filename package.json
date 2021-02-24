@@ -1,7 +1,7 @@
 {
   "name": "cache-monitor",
   "version": "0.0.1",
-  "description": "Part of the 5G-VICTORI media cache prefilling solution. Monitors availability of media items in [Cache](https://gitlab.irt.de/5g-victori/cache)",
+  "description": "Part of the 5G-VICTORI media cache prefilling solution. Monitors availability of media items in the media cache.",
   "author": "Christoph Ziegler",
   "license": "MIT",
   "scripts": {
